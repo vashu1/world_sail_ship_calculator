@@ -1,0 +1,125 @@
+https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global
+The Blended Sea Winds dataset contains globally gridded, high-resolution ocean surface vector winds and wind stresses
+on a global 0.25° grid, and multiple time resolutions of six-hourly, daily, monthly, and 11-year (1995–2005) climatological monthlies
+
+
+mkdir Blended_Sea_Winds_dataset_6hourly
+cd Blended_Sea_Winds_dataset_6hourly
+wget -r https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/
+
+
+../data_snippets/wind/Blended_Sea_Winds_dataset_6hourly//www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1987/uv19870709.nc
+
+
+Especially for getting large datasets, we encourage you to use lftp instead of ftp because it allows repeated gets (m-get) to retrieve missed data files. See my_lftp.sh for an example.
+
+
+
+
+A small python3 script converting NOAA Blended Sea Winds data from .nc to .csv files.
+https://github.com/oneandonlyoddo/nc2csv
+
+git clone https://github.com/oneandonlyoddo/nc2csv.git
+cd nc2csv/
+pip3 install -r requirements.txt
+python3 nc2csv.py --file ../Blended_Sea_Winds_dataset_6hourly/www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1987/uv19870711.nc
+
+
+
+        1   18.408   18.408   19.342   19.342 nc2csv.py:14(convert)
+
+
+from numpy.random.mtrand import uniform
+import netCDF4
+from timeit import Timer
+import os, sys
+
+def read_netcdf(filename):
+    file = netCDF4.Dataset(filename)
+    data = file.variables['data'][:]
+    file.close()
+
+fn = '../Blended_Sea_Winds_dataset_6hourly/www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1987/uv19870711.nc'
+read_netcdf(fn)
+
+time 4
+zlev 1
+lat 719
+lon 1440
+
+u m/s x-component
+v m//s y-component
+_FillValue: -9999.0
+current shape = (4, 1, 719, 1440)
+
+
+fromcdl  tocdl
+
+>>> file.data_model
+'NETCDF3_CLASSIC'
+>>> file.dimensions
+{'zlev': <class 'netCDF4._netCDF4.Dimension'>: name = 'zlev', size = 1, 'time': <class 'netCDF4._netCDF4.Dimension'>: name = 'time', size = 4, 'lat': <class 'netCDF4._netCDF4.Dimension'>: name = 'lat', size = 719, 'lon': <class 'netCDF4._netCDF4.Dimension'>: name = 'lon', size = 1440}
+
+s = file.tocdl(coordvars=True, data=True)
+
+pip3 install netCDF4
+brew install cdo
+brew install nco
+
+brew tap homebrew/science
+brew install netcdf
+
+
+https://confluence.ecmwf.int/display/CKB/How+to+convert+NetCDF+to+CSV
+Third option : Windows users
+
+A third option to convert the data from NetCDF to CSV, for Windows users, is download and install netcdf4excel.  The plug-in opens directly NetCDF files in Microsoft Excel maintaining conventions for the NetCDF variables. Please see the link for more details: http://netcdf4excel.github.io/.
+Other solutions
+
+For Unix users, there are others options provided by some common NetCDF software packages. Please the links for more details:
+    ncdump → http://manpages.ubuntu.com/manpages/xenial/man1/ncdump-hdf.1.html
+    cdo → https://code.mpimet.mpg.de/projects/cdo/wiki/Tutorial
+    ncks → https://www.unidata.ucar.edu/support/help/MailArchives/netcdf/msg08405.html
+
+
+===== CURRENTS
+
+OSCAR third degree resolution ocean surface currents
+Granule Time Span: 1992-Oct-21 to 2020-Nov-16
+https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/preview/L4/oscar_third_deg/
+
+https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/preview/L4/oscar_third_deg/docs/oscarthirdguide.pdf
+
+
+from https://podaac.jpl.nasa.gov/dataset/OSCAR_L4_OC_third-deg
+mkdir oscar
+cd oscar
+
+
+
+====== DOWNLOAD
+
+OSCAR currents
+wget https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/docs/bl2002.pdf
+wget https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/docs/readme.txt
+for i in {1995..2005} ; do echo $i ; curl https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/world_oscar_vel_5d$i.nc.gz > world_oscar_vel_5d$i.nc ; done
+
+DOWNLOAD blended 1995-2005
+for i in {1995..2005} ; do echo $i ; wget -r https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/$i/ ; done
+-c -N
+
+wget -c -N --accept-regex='.*1997.*' -r https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1997/
+
+Ports="1 5 7 10 12"
+for port in $Ports; do
+
+
+NCDUMP http://manpages.ubuntu.com/manpages/xenial/man1/ncdump-hdf.1.html
+Network Common Data Form (NetCDF) https://www.unidata.ucar.edu/software/netcdf/
+    https://unidata.github.io/netcdf4-python/
+unpacking nc https://confluence.ecmwf.int/display/CKB/How+to+convert+NetCDF+to+CSV
+blended https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/
+    https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds
+Which is the best global wind dataset available for download https://www.researchgate.net/post/Which_is_the_best_global_wind_dataset_available_for_download
+
+
