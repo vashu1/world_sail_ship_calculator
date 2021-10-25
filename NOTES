@@ -102,7 +102,10 @@ cd oscar
 OSCAR currents
 wget https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/docs/bl2002.pdf
 wget https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/docs/readme.txt
-for i in {1995..2005} ; do echo $i ; curl https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/world_oscar_vel_5d$i.nc.gz > world_oscar_vel_5d$i.nc ; done
+wget -c -N --accept-regex='.*world_oscar_vel.*' -r https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/contents.html
+OR curl ./podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/world_oscar_vel_5d1998.nc.gz.covjson ?
+
+BAD    for i in {1995..2005} ; do echo $i ; curl https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/world_oscar_vel_5d$i.nc.gz > world_oscar_vel_5d$i.nc ; done
 
 DOWNLOAD blended 1995-2005
 for i in {1995..2005} ; do echo $i ; wget -r https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/$i/ ; done
