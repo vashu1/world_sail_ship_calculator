@@ -1,3 +1,5 @@
+cartopy
+
 https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global
 The Blended Sea Winds dataset contains globally gridded, high-resolution ocean surface vector winds and wind stresses
 on a global 0.25° grid, and multiple time resolutions of six-hourly, daily, monthly, and 11-year (1995–2005) climatological monthlies
@@ -39,8 +41,8 @@ def read_netcdf(filename):
     data = file.variables['data'][:]
     file.close()
 
-fn = '../Blended_Sea_Winds_dataset_6hourly/www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1987/uv19870711.nc'
-read_netcdf(fn)
+filename = './www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1996/uv19960711.nc'
+read_netcdf(filename)
 
 time 4
 zlev 1
@@ -125,4 +127,6 @@ blended https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/
     https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds
 Which is the best global wind dataset available for download https://www.researchgate.net/post/Which_is_the_best_global_wind_dataset_available_for_download
 
+
+# from netCDF4 import MFDataset  # does not have a aggregation dimension
 

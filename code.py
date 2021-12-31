@@ -12,8 +12,12 @@ ocean waves dataset
 import numpy as np
 import heapq
 import datetime
-import netCDF4
 from collections import OrderedDict
+
+import netCDF4
+from timeit import Timer
+import os, sys
+
 """TODO
 polar
 
@@ -84,13 +88,10 @@ while travel_front:
     process_point(start_time, cell)
 
 
-import netCDF4
-from timeit import Timer
-import os, sys
 
 def read_netcdf(filename):
     file = netCDF4.Dataset(filename)
-    data = file.variables['data'][:]
+    data = file.variables[:]   # ['data'][:]  # keys ['time', 'zlev', 'lat', 'lon', 'u', 'v']
     file.close()
 
 # Blended_Sea_Winds_dataset_6hourly/www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly
@@ -100,12 +101,13 @@ def read_netcdf(filename):
 file = netCDF4.Dataset('1995/uv19950115.nc')
 
 wind_files = {}
-for root, subdirs, files in os.walk('./Blended_Sea_Winds_dataset_6hourly'):
+for root, subdirs, files in os.walk('www.ncei.noaa.gov'):  #'./Blended_Sea_Winds_dataset_6hourly'):
     for file in files:
         if file.endswith('.nc'):
-            wind_files[file] = subdirs + '/' + file
+            print(root, subdirs, file)
+            wind_files[file] = root + '/' + file
 
-wind_root_path = 'Blended_Sea_Winds_dataset_6hourly/www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly'
+wind_root_path = 'www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly'
 cache_size = 10
 cache = OrderedDict()
 def get_file(travel_time):
