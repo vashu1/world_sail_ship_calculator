@@ -47,4 +47,4 @@ def ship_speed(wind_speed, degrees):  #TODO waves    180 degrees = wind from beh
 
 assert _ship_speed(1, 90) == 9.27
 assert _ship_speed(1, 100) == (9.27+8.62)/2
-assert ship_speed(8, 90) == 9.27
+assert ship_speed(8, 90) == (0, 9.27)

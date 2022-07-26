@@ -2,6 +2,8 @@
 # use coordinates present in both datasets
 # scan +-2 cells - 25 grid
 
+# Another tool you may be interested in reading about is geopandas, as this kind of containment testing is one of its core capabilities.
+
 """
 ICE https://www.saf21.eu/2017/04/29/plotting-seas-with-python-and-ices-shape-file/
 
@@ -19,7 +21,7 @@ from timeit import Timer
 import os, sys
 
 """TODO
-polar
+polar drops
 
 draw equidistant
 

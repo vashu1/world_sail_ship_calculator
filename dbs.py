@@ -18,7 +18,7 @@ def get_cached_file(path, fname):
         if len(cache) > CACHE_SIZES[path]:
             k, _ = cache.popitem()  # pop last
             print(f'evicted "{k}" from cache {path=}')
-        cache[path][fname] = netCDF4.Dataset(fname)
+        cache[path][fname] = netCDF4.Dataset(file_paths[path][fname])
     cache[path].move_to_end(fname, last=False)
     return cache[path][fname]
 
@@ -68,7 +68,7 @@ def current(dt, lon, lat):
     if lat >= 140:
         return None, None
     depth = 0
-    u, v = file_current.variables['u'][day,depth,lat,lon] or not file_current.variables['v'][day,depth,lat,lon]
+    u, v = file_current.variables['u'][day,depth,lat,lon], file_current.variables['v'][day,depth,lat,lon]
     return u, v if u and v else (None, None)
 
 

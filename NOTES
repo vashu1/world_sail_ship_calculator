@@ -1,3 +1,70 @@
+SEABORN example https://github.com/dkobak/excess-mortality/blob/main/europe-nuts.ipynb
+
+
+SSL vulnerability https://habr.com/ru/post/677562/
+
+"""
+uv - xy?
+
+Include (u,v) means and scalar mean speed w for comparison
+
+file.dimensions
+    zlev1 10.
+    time4 [245328 245334 245340 245346]
+    lat719  -89.75  89.75
+    lon1440 0 359.75
+
+print(file.variables['v'])   current shape = (4, 1, 719, 1440)
+"""
+
+=== waves
+
+-- FOWD https://journals.ametsoc.org/view/journals/atot/38/7/JTECH-D-20-0185.1.xml
+    https://www.seanoe.org/data/00601/71337/
+
+
+!! SEANOE https://www.seanoe.org/data/00601/71337/
+
+../seanoe/ASAR_Product_NC_2003/ENVISAT_ASAR_Wave_20030101_000404_20030101_000649_00012_00316.nc
+'latitude', 'longitude', 'time', 'heading', 'inci_angle', 'land_flag', 'homogeneity', 'normalized_variance', 'rejection_flag', 'qc_flag', 'swh', 'mwp', 'swh_cali', 'mwp_cali'
+lat  (12,)
+lon (12,)
+time [94694644 94694659] [94694794 94694809]
+
+18052 files
+70 files per day
+10K per file
+
+latitude [54.875015 55.748432] [63.574326  0.      ]
+longitude [-38.59197 -38.96503] [-42.962505   0.      ]
+time [94694644 94694659] [94694794 94694809]
+
+../seanoe/ASAR_Product_NC_2003/ENVISAT_ASAR_Wave_20030730_212537_20030730_214551_00018_00329.nc
+latitude [-38.56931  -37.694366] [32.27441 33.15805]
+longitude [19.008629 18.699593] [1.363645 1.141778]
+time [112915537 112915552] [112916736 112916751]
+
+ENVISAT satellite
+a Sun synchronous polar orbit at an altitude of 790 ± 10 km. It orbits the Earth in about 101 minutes, with a repeat cycle of 35 days.
+...
+RA-2 (Radar Altimeter 2) is a dual-frequency Nadir pointing Radar operating in the Ku band and S bands, it is used to define ocean topography, map/monitor sea ice and measure land heights.
+...
+https://www.nature.com/articles/s41597-020-00601-3
+
+The wave mode (WM), which is dedicated to measurements of ocean wave, is a unique imaging mode of SAR. Although the WM covers a relatively small area of the sea surface (approximately 6 km by 10 km), these data are automatically acquired by spaceborne SAR over the global oceans. From the European Remote Sensing Satellite missions (ERS-1, 1991–2000 and ERS-2, 1995–2011)12,13,14,15 to the Environment Satellite (ENVISAT) mission (2002–2012)16,17 and the current Sentinel-1A/1B (2014 -)18 and the Chinese Gaofen-3 (2016 -) missions19, WM data have been available for nearly 30 years and will continue to be acquired into the future, constituting a valuable dataset for global sea state measurements.
+
+ASAR WM data have a spatial coverage ranging from 6 km × 5 km to 10 km × 5 km over the sea surface. The distance between two consecutive acquisitions of WM data is 100 km,
+
+
+
+===
+
+Blended_Sea_Winds_dataset_6hourly 1987 2018
+OSCAR 1995 2005
+
+SEANOE 2003 2011
+===
+
 cartopy
 
 https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global
@@ -16,7 +83,8 @@ wget -r https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/
 Especially for getting large datasets, we encourage you to use lftp instead of ftp because it allows repeated gets (m-get) to retrieve missed data files. See my_lftp.sh for an example.
 
 
-
+windrose chart https://stock.adobe.com/au/images/windrose-meteorological-graphic-wind-rose-chart-set-compass-rose-map-example-rose-of-the-wind-for-scientific-materials-and-infographic-design/239041386
+    australia http://www.bom.gov.au/cgi-bin/climate/cgi_bin_scripts/windrose_selector.cgi?period=Annual&type=9&location=38003
 
 A small python3 script converting NOAA Blended Sea Winds data from .nc to .csv files.
 https://github.com/oneandonlyoddo/nc2csv
