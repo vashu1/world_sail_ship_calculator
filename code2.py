@@ -30,7 +30,7 @@ make install
 -- Installing: /usr/local/lib/libgeos_c.1.dylib
 """
 
-CELL_SCAN_RADIUS = 3
+CELL_SCAN_RADIUS = 1
 LATTITUDE_NORTH_BOUNDARY = 160
 LATTITUDE_SOUTH_BOUNDARY = 20
 TOO_BIG_DISTANCE = 1e6
@@ -102,7 +102,7 @@ while edge:
         for x, y in neighbours(x0, y0, 1 if near_land else scan):
             c += 1
             if c % 10_000 == 0:
-                print(c, len([i for i in flatten(distances) if 0 < i < TOO_BIG_DISTANCE]))  # 1411000 49031
+                print(c, len([i for i in flatten(distances) if 0 < i < TOO_BIG_DISTANCE]))  # 1411000 49031     cell1  370000 35814
             if distances[x][y] < 0:  # land
                 continue
             d = geodesic((norm_latt(y0), norm_long(x0)), (norm_latt(y), norm_long(x))).km + d0

@@ -2,7 +2,10 @@
 
 # TODO
 # winds NOAA
+wget -c -N --accept-regex='.*1997.*' -r https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/1997/
+
 # currents OSCAR
+wget -c -N --accept-regex='.*world_oscar_vel.*' -r https://podaac-opendap.jpl.nasa.gov/opendap/allData/oscar/L4/oscar_1_deg/contents.html
 
 mkdir seanoe
 cd seanoe

@@ -1,6 +1,7 @@
 import os
 import netCDF4
 from collections import defaultdict, OrderedDict
+import numpy as np
 
 WIND_PATH = 'www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/6-hourly/'
 CURRENT_PATH = 'oscar/'
@@ -45,7 +46,7 @@ def wind(dt, lon, lat):
     lon= int(lon * 4)
     lat = int(lat * 4)
     u, v = file_wind.variables['u'][t][0][lat][lon], file_wind.variables['v'][t][0][lat][lon]
-    return u, v if u and v else (None, None)
+    return (u, v) if isinstance(u, np.float32) and isinstance(v, np.float32) else (None, None)
 
 
 def current_fname(dt):  # world_oscar_vel_5d1996.nc
@@ -69,7 +70,7 @@ def current(dt, lon, lat):
         return None, None
     depth = 0
     u, v = file_current.variables['u'][day,depth,lat,lon], file_current.variables['v'][day,depth,lat,lon]
-    return u, v if u and v else (None, None)
+    return (u, v) if isinstance(u, np.float32) and isinstance(v, np.float32) else (None, None)
 
 
 fill_files(WIND_PATH)

@@ -195,3 +195,32 @@ for lat in range(-90 + STEP, 90, STEP):
 
 plt.show()
 
+
+# =====
+
+import dbs  # dbs.current dbs.wind(dt, lon, lat)
+
+cur_dt = datetime(year=1997, month=5, day=30, hour=12)
+
+plt.figure(figsize=(15, 10))#, dpi=80)
+fig, ax = plt.subplots()
+m = Basemap(projection='cyl', resolution='l')
+m.drawcoastlines()
+#m.bluemarble()
+ax = plt.gca()
+ax.set_ylim(-70, 75)
+
+
+for lat in range(-90 + STEP, 90, STEP):
+    for lon in range(-180 + STEP, 180, STEP):
+        x, y = m(lon, lat)
+        dx, dy = dbs.current dbs.wind(dt, lon, lat)
+        dx = currents_u[lon][lat] * MAX_VECTOR / mx
+        dy = currents_v[lon][lat] * MAX_VECTOR / mx
+        if not dx or not dy:
+            continue
+        arrow = Arrow(x, y, dx, dy, width=5.0, color="red")  # https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Arrow.html
+        ax.add_patch(arrow)
+
+plt.show()
+
